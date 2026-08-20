@@ -43,6 +43,17 @@ jobs:
       - name: List installed Windows SDKs
         run: |
          Get-ChildItem "C:\Program Files (x86)\Windows Kits\10\Include" | Select-Object Name
+     
+      - name: Install UWP C++ workload
+        shell: pwsh
+        run: |
+          $vsInstaller = "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installer.exe"
+          Start-Process -FilePath $vsInstaller -ArgumentList `
+            "modify", "--installPath", "C:\Program Files\Microsoft Visual Studio\18\Enterprise", `
+            "--add", "Microsoft.VisualStudio.Workload.UniversalBuildTools", `
+            "--add", "Microsoft.VisualStudio.ComponentGroup.UWP.VC", `
+            "--quiet", "--norestart", "--wait" `
+            -Wait -PassThru
 
       - name: Build UWP App
         run: msbuild App/App.sln /p:Configuration=Release /p:Platform=x64 /p:AppxBundlePlatforms="x64" /p:AppxPackageSigningEnabled=false /p:UapAppxPackageBuildMode=SideloadOnly
