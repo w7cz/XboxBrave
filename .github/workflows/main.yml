@@ -1,0 +1,38 @@
+name: Build Xbox Browser
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust nightly
+        run: |
+          rustup toolchain install nightly
+          rustup component add rust-src --toolchain nightly
+          rustup target add x86_64-uwp-windows-msvc --toolchain nightly
+
+      - name: Build Rust adblock engine
+        working-directory: native/adblock_engine
+        run: |
+          rustup run nightly cargo build --release -Z build-std=std,panic_abort --target x86_64-uwp-windows-msvc
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Restore NuGet
+        run: nuget restore App/App.sln
+
+      - name: Build UWP App
+        run: msbuild App/App.sln /p:Configuration=Release /p:Platform=x64 /p:AppxBundlePlatforms="x64" /p:AppxPackageSigningEnabled=false
+
+      - name: Upload appx
+        uses: actions/upload-artifact@v4
+        with:
+          name: XboxBrave-appx
+          path: App/AppPackages/**/*.appx
