@@ -15,7 +15,7 @@ jobs:
         run: |
           rustup toolchain install nightly
           rustup component add rust-src --toolchain nightly
-          rustup target add x86_64-uwp-windows-msvc --toolchain nightly
+          
 
       - name: Build Rust adblock engine
         working-directory: native/adblock_engine
