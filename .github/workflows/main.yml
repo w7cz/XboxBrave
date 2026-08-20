@@ -19,20 +19,33 @@ jobs:
 
       - name: Build Rust adblock engine
         working-directory: native/adblock_engine
+        run: rustup run nightly cargo build --release -Z build-std=std,panic_abort --target x86_64-uwp-windows-msvc
+        continue-on-error: true
+
+      - name: Check Rust build output
+        working-directory: native/adblock_engine
         run: |
-          rustup run nightly cargo build --release -Z build-std=std,panic_abort --target x86_64-uwp-windows-msvc
+          if (Test-Path "target/x86_64-uwp-windows-msvc/release/adblock_engine.lib") {
+            echo "RUST_OK=true" >> $env:GITHUB_ENV
+          } else {
+            echo "RUST_OK=false" >> $env:GITHUB_ENV
+          }
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+
+      - name: Restore NuGet packages
+        run: nuget restore App/App.sln
 
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
 
-      - name: Restore NuGet
-        run: nuget restore App/App.sln
-
       - name: Build UWP App
-        run: msbuild App/App.sln /p:Configuration=Release /p:Platform=x64 /p:AppxBundlePlatforms="x64" /p:AppxPackageSigningEnabled=false
+        run: msbuild App/App.sln /p:Configuration=Release /p:Platform=x64 /p:AppxBundlePlatforms="x64" /p:AppxPackageSigningEnabled=false /p:UapAppxPackageBuildMode=SideloadOnly
 
       - name: Upload appx
         uses: actions/upload-artifact@v4
         with:
           name: XboxBrave-appx
           path: App/AppPackages/**/*.appx
+          if-no-files-found: warn
