@@ -1,0 +1,11 @@
+bin/
+obj/
+Debug/
+Release/
+*.appx
+*.appxbundle
+*.appxsym
+target/
+Cargo.lock
+.vs/
+AppPackages/
