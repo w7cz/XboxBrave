@@ -47,7 +47,8 @@ jobs:
       - name: Check CppWinRT package contents
         shell: pwsh
         run: |
-          Get-ChildItem "App\packages\Microsoft.Windows.CppWinRT.2.0.240405.15\build\native" -Recurse | Select-Object FullName
+          Get-ChildItem "App\packages\Microsoft.Windows.CppWinRT.2.0.240405.15" -Recurse -Filter "cppwinrt.exe"
+
 
       - name: Build UWP App
         run: msbuild App/App.sln /p:Configuration=Release /p:Platform=x64 /p:AppxBundlePlatforms="x64" /p:AppxPackageSigningEnabled=false /p:UapAppxPackageBuildMode=SideloadOnly
