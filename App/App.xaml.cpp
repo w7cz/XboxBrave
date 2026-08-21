@@ -27,9 +27,10 @@ namespace winrt::XboxBrave::implementation
         if (!rootFrame)
         {
             rootFrame = Frame();
-            rootFrame.NavigationFailed({ this, [](IInspectable const&, NavigationFailedEventArgs const& e) {
+           rootFrame.NavigationFailed([](IInspectable const&, NavigationFailedEventArgs const& e) {
                 throw hresult_error(E_FAIL, hstring(L"Failed to load Page ") + e.SourcePageType().Name);
-            } });
+            });
+
 
             Window::Current().Content(rootFrame);
         }
