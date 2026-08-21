@@ -26,6 +26,7 @@
 
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <Import Project="$(SolutionDir)packages\Microsoft.Web.WebView2.1.0.2792.45\build\native\Microsoft.Web.WebView2.props" Condition="exists('$(SolutionDir)packages\Microsoft.Web.WebView2.1.0.2792.45\build\native\Microsoft.Web.WebView2.props')" />
+  <Import Project="$(SolutionDir)packages\Microsoft.UI.Xaml.2.8.6\build\native\Microsoft.UI.Xaml.props" Condition="exists('$(SolutionDir)packages\Microsoft.UI.Xaml.2.8.6\build\native\Microsoft.UI.Xaml.props')" />
   <Import Project="$(SolutionDir)packages\Microsoft.Windows.CppWinRT.2.0.240405.15\build\native\Microsoft.Windows.CppWinRT.props" Condition="exists('$(SolutionDir)packages\Microsoft.Windows.CppWinRT.2.0.240405.15\build\native\Microsoft.Windows.CppWinRT.props')" />
 
   <PropertyGroup Label="Configuration">
@@ -139,6 +140,7 @@
 
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <Import Project="$(SolutionDir)packages\Microsoft.Web.WebView2.1.0.2792.45\build\native\Microsoft.Web.WebView2.targets" Condition="exists('$(SolutionDir)packages\Microsoft.Web.WebView2.1.0.2792.45\build\native\Microsoft.Web.WebView2.targets')" />
+  <Import Project="$(SolutionDir)packages\Microsoft.UI.Xaml.2.8.6\build\native\Microsoft.UI.Xaml.targets" Condition="exists('$(SolutionDir)packages\Microsoft.UI.Xaml.2.8.6\build\native\Microsoft.UI.Xaml.targets')" />
   <Import Project="$(SolutionDir)packages\Microsoft.Windows.CppWinRT.2.0.240405.15\build\native\Microsoft.Windows.CppWinRT.targets" Condition="exists('$(SolutionDir)packages\Microsoft.Windows.CppWinRT.2.0.240405.15\build\native\Microsoft.Windows.CppWinRT.targets')" />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Win32.targets" Condition="exists('$(VCTargetsPath)\Microsoft.Cpp.Win32.targets')" />
 </Project>
