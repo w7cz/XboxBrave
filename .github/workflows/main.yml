@@ -35,7 +35,8 @@ jobs:
         uses: NuGet/setup-nuget@v2
 
       - name: Restore NuGet packages
-        run: msbuild App/App.sln /t:Restore /p:Configuration=Release /p:Platform=x64
+        run: nuget restore App/App.sln
+
 
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
