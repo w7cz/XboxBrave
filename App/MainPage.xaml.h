@@ -1,4 +1,5 @@
 #pragma once
+#include "MainPage.g.h"
 #include "MainPage.xaml.g.h"
 #include "AdblockEngine.h"
 
