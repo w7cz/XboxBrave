@@ -1,3 +1,4 @@
+#include "pch.h"
 #pragma once
 #include "MainPage.xaml.g.h"
 #include "AdblockEngine.h"
