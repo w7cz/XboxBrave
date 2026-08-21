@@ -53,6 +53,16 @@ jobs:
 
       - name: Build UWP App
         run: msbuild App/App.sln /p:Configuration=Release /p:Platform=x64 /p:AppxBundlePlatforms="x64" /p:AppxPackageSigningEnabled=false /p:UapAppxPackageBuildMode=SideloadOnly
+   
+      - name: Dump generated header on failure
+        if: always()
+        shell: pwsh
+        run: |
+          if (Test-Path "App\Generated Files\MainPage.xaml.g.h") {
+            Get-Content "App\Generated Files\MainPage.xaml.g.h" -TotalCount 40
+          } else {
+            echo "File not found"
+          }
 
 
       - name: Upload appx
