@@ -7,9 +7,7 @@ edition = "2021"
 crate-type = ["staticlib"]
 
 [dependencies]
-adblock = { version = "0.9", default-features = false, features = ["full-regex-handling"] }
-rmp = "0.8.10"
-rmp-serde = "1.1"
+adblock = { version = "0.13", default-features = false, features = ["full-regex-handling"] }
 
 [profile.release]
 panic = "abort"
