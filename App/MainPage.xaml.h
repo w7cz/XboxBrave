@@ -8,6 +8,7 @@ namespace winrt::XboxBrave::implementation
     struct MainPage : MainPageT<MainPage>
     {
         MainPage();
+        ~MainPage();
 
         void Browser_CoreWebView2Initialized(
             Microsoft::UI::Xaml::Controls::WebView2 const& sender,
