@@ -63,6 +63,12 @@ jobs:
           } else {
             echo "File not found"
           }
+      
+      - name: List all generated files
+        if: always()
+        shell: pwsh
+        run: |
+          Get-ChildItem "App\Generated Files" -Recurse -File | Select-Object Name, FullName
 
 
       - name: Upload appx
