@@ -20,7 +20,7 @@ jobs:
       - name: Build Rust adblock engine
         working-directory: native/adblock_engine
         run: rustup run nightly cargo build --release -Z build-std=std,panic_abort --target x86_64-uwp-windows-msvc
-        continue-on-error: true
+        continue-on-error: false
 
       - name: Check Rust build output
         working-directory: native/adblock_engine
