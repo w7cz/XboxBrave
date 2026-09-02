@@ -21,8 +21,15 @@ pub extern "C" fn engine_match(
     let url = unsafe { CStr::from_ptr(url) }.to_string_lossy();
     let source = unsafe { CStr::from_ptr(source) }.to_string_lossy();
 
-    match Request::new(&url, &source, "document") {
-        Ok(request) => engine.check_network_request(&request).matched,
+    // adblock 0.13.x added a 4th &str parameter to Request::new (Brave's own
+    // benchmarks pass "" for it — exact purpose undocumented, safe default).
+    match Request::new(&url, &source, "document", "") {
+        Ok(request) => {
+            let result = engine.check_network_request(&request);
+            // adblock 0.13.x removed BlockerResult::matched. A request is
+            // blocked when a filter matched and no exception rule overrides it.
+            result.filter.is_some() && result.exception.is_none()
+        }
         Err(_) => false,
     }
 }
