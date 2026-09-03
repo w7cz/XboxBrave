@@ -96,6 +96,8 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </ClCompile>
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="$(GeneratedFilesDir)App.g.cpp" />
+    <ClCompile Include="$(GeneratedFilesDir)MainPage.g.cpp" />
   </ItemGroup>
 
   <ItemGroup>
