@@ -1,3 +1,4 @@
+import "Microsoft.UI.Xaml.idl";
 import "MainPage.idl";
 
 namespace XboxBrave
