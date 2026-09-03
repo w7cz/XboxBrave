@@ -8,9 +8,9 @@
 
 using namespace winrt;
 using namespace Windows::ApplicationModel::Activation;
-using namespace Windows::UI::Xaml;
-using namespace Windows::UI::Xaml::Controls;
-using namespace Windows::UI::Xaml::Navigation;
+using namespace Microsoft::UI::Xaml;
+using namespace Microsoft::UI::Xaml::Controls;
+using namespace Microsoft::UI::Xaml::Navigation;
 
 namespace winrt::XboxBrave::implementation
 {
@@ -23,6 +23,7 @@ namespace winrt::XboxBrave::implementation
     {
         Frame rootFrame{ nullptr };
         auto content = Window::Current().Content();
+
         if (content)
         {
             rootFrame = content.try_as<Frame>();
@@ -31,9 +32,16 @@ namespace winrt::XboxBrave::implementation
         if (!rootFrame)
         {
             rootFrame = Frame();
-            rootFrame.NavigationFailed([](IInspectable const&, NavigationFailedEventArgs const& e) {
-                throw hresult_error(E_FAIL, hstring(L"Failed to load Page ") + e.SourcePageType().Name);
-            });
+
+            rootFrame.NavigationFailed(
+                [](IInspectable const&, NavigationFailedEventArgs const& e)
+                {
+                    throw hresult_error(
+                        E_FAIL,
+                        hstring(L"Failed to load Page ") +
+                        e.SourcePageType().Name
+                    );
+                });
 
             Window::Current().Content(rootFrame);
         }
