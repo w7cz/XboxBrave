@@ -2,6 +2,10 @@
 #include "App.xaml.h"
 #include "MainPage.xaml.h"
 
+#if __has_include("App.xaml.g.hpp")
+#include "App.xaml.g.hpp"
+#endif
+
 using namespace winrt;
 using namespace Windows::ApplicationModel::Activation;
 using namespace Windows::UI::Xaml;
@@ -27,10 +31,9 @@ namespace winrt::XboxBrave::implementation
         if (!rootFrame)
         {
             rootFrame = Frame();
-           rootFrame.NavigationFailed([](IInspectable const&, NavigationFailedEventArgs const& e) {
+            rootFrame.NavigationFailed([](IInspectable const&, NavigationFailedEventArgs const& e) {
                 throw hresult_error(E_FAIL, hstring(L"Failed to load Page ") + e.SourcePageType().Name);
             });
-
 
             Window::Current().Content(rootFrame);
         }
