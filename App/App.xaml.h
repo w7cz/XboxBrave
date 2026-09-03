@@ -6,7 +6,9 @@ namespace winrt::XboxBrave::implementation
     struct App : AppT<App>
     {
         App();
-        void OnLaunched(Windows::ApplicationModel::Activation::LaunchActivatedEventArgs const&);
+
+        void OnLaunched(
+            Windows::ApplicationModel::Activation::LaunchActivatedEventArgs const&);
     };
 }
 
