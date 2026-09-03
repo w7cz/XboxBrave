@@ -1,10 +1,9 @@
-import "Microsoft.UI.Xaml.idl";
 import "MainPage.idl";
 
 namespace XboxBrave
 {
     [default_interface]
-    runtimeclass App : Microsoft.UI.Xaml.Application
+    runtimeclass App : Windows.UI.Xaml.Application
     {
         App();
     }
