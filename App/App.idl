@@ -3,7 +3,7 @@ import "MainPage.idl";
 namespace XboxBrave
 {
     [default_interface]
-    runtimeclass App : Windows.UI.Xaml.Application
+    runtimeclass App : Microsoft.UI.Xaml.Application
     {
         App();
     }
