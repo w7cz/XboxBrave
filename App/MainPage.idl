@@ -1,3 +1,5 @@
+import "Microsoft.UI.Xaml.idl";
+
 namespace XboxBrave
 {
     [default_interface]
