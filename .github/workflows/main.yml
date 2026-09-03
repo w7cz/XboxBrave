@@ -54,22 +54,39 @@ jobs:
       - name: Build UWP App
         run: msbuild App/App.sln /p:Configuration=Release /p:Platform=x64 /p:AppxBundlePlatforms="x64" /p:AppxPackageSigningEnabled=false /p:UapAppxPackageBuildMode=SideloadOnly
    
-      - name: Dump generated header on failure
-        if: always()
-        shell: pwsh
-        run: |
-          if (Test-Path "App\Generated Files\MainPage.xaml.g.h") {
-            Get-Content "App\Generated Files\MainPage.xaml.g.h" -TotalCount 40
-          } else {
-            echo "File not found"
-          }
-      
       - name: List all generated files
         if: always()
         shell: pwsh
         run: |
           Get-ChildItem "App\Generated Files" -Recurse -File | Select-Object Name, FullName
 
+      - name: Dump App.xaml.g.h on failure
+        if: always()
+        shell: pwsh
+        run: |
+          if (Test-Path "App\Generated Files\App.xaml.g.h") {
+            Get-Content "App\Generated Files\App.xaml.g.h"
+          } else {
+            echo "App.xaml.g.h not found"
+          }
+
+      - name: Dump App.g.h (component header) on failure
+        if: always()
+        shell: pwsh
+        run: |
+          $f = Get-ChildItem "App\Generated Files" -Recurse -File -Filter "App.g.h" | Select-Object -First 1
+          if ($f) {
+            echo "Found: $($f.FullName)"
+            Get-Content $f.FullName
+          } else {
+            echo "App.g.h not found anywhere under Generated Files"
+          }
+
+      - name: Search for winrt_make_XboxBrave_App definition
+        if: always()
+        shell: pwsh
+        run: |
+          Get-ChildItem "App\Generated Files" -Recurse -File -Include *.h,*.hpp,*.cpp | Select-String -Pattern "winrt_make_XboxBrave_App|DISABLE_XAML_GENERATED_MAIN|__cdecl main" | ForEach-Object { "$($_.Path):$($_.LineNumber): $($_.Line)" }
 
       - name: Upload appx
         uses: actions/upload-artifact@v4
