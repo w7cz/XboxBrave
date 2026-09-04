@@ -11,12 +11,3 @@ namespace winrt::XboxBrave::implementation
             Windows::ApplicationModel::Activation::LaunchActivatedEventArgs const&);
     };
 }
-
-namespace winrt::XboxBrave::factory_implementation
-{
-    struct App : implementation::AppT<App>
-    {
-    };
-}
-
-
