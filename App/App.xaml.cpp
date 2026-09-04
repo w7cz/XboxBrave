@@ -2,15 +2,16 @@
 #include "App.xaml.h"
 #include "MainPage.xaml.h"
 
-#if __has_include("App.xaml.g.hpp")
-#include "App.xaml.g.hpp"
-#endif
-
 using namespace winrt;
 using namespace Windows::ApplicationModel::Activation;
 using namespace Windows::UI::Xaml;
 using namespace Windows::UI::Xaml::Controls;
 using namespace Windows::UI::Xaml::Navigation;
+
+extern "C" __declspec(dllexport) void* __cdecl winrt_make_XboxBrave_App()
+{
+    return winrt::detach_abi(winrt::make<winrt::XboxBrave::implementation::App>());
+}
 
 namespace winrt::XboxBrave::implementation
 {
