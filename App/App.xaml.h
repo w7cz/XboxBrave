@@ -14,8 +14,9 @@ namespace winrt::XboxBrave::implementation
 
 namespace winrt::XboxBrave::factory_implementation
 {
-    struct App : implementation::AppT<App, implementation::App>
+    struct App : implementation::AppT<App>
     {
     };
 }
+
 
