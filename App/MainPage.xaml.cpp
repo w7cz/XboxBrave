@@ -7,8 +7,8 @@
 
 using namespace winrt;
 using namespace Windows::Foundation;
-using namespace Microsoft::UI::Xaml;
-using namespace Microsoft::UI::Xaml::Input;
+using namespace Windows::UI::Xaml;
+using namespace Windows::UI::Xaml::Input;
 using namespace Microsoft::UI::Xaml::Controls;
 
 namespace winrt::XboxBrave::implementation
@@ -48,7 +48,7 @@ namespace winrt::XboxBrave::implementation
 
     void MainPage::AddressBar_KeyDown(
         Windows::Foundation::IInspectable const& /*sender*/,
-        Microsoft::UI::Xaml::Input::KeyRoutedEventArgs const& e)
+        Windows::UI::Xaml::Input::KeyRoutedEventArgs const& e)
     {
         if (e.Key() == Windows::System::VirtualKey::Enter)
         {
