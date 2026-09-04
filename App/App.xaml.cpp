@@ -8,9 +8,9 @@
 
 using namespace winrt;
 using namespace Windows::ApplicationModel::Activation;
-using namespace Microsoft::UI::Xaml;
-using namespace Microsoft::UI::Xaml::Controls;
-using namespace Microsoft::UI::Xaml::Navigation;
+using namespace Windows::UI::Xaml;
+using namespace Windows::UI::Xaml::Controls;
+using namespace Windows::UI::Xaml::Navigation;
 
 namespace winrt::XboxBrave::implementation
 {
