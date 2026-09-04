@@ -18,3 +18,4 @@ namespace winrt::XboxBrave::factory_implementation
     {
     };
 }
+
