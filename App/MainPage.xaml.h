@@ -17,7 +17,7 @@ namespace winrt::XboxBrave::implementation
 
         void AddressBar_KeyDown(
             Windows::Foundation::IInspectable const& sender,
-            Microsoft::UI::Xaml::Input::KeyRoutedEventArgs const& e);
+            Windows::UI::Xaml::Input::KeyRoutedEventArgs const& e);
 
     private:
         void* m_adblockEngine{ nullptr };
