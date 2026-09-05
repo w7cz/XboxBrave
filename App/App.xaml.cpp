@@ -8,9 +8,18 @@ using namespace Windows::UI::Xaml;
 using namespace Windows::UI::Xaml::Controls;
 using namespace Windows::UI::Xaml::Navigation;
 
-extern "C" __declspec(dllexport) void* __cdecl winrt_make_XboxBrave_App()
+void* winrt_make_XboxBrave_App()
 {
     return winrt::detach_abi(winrt::make<winrt::XboxBrave::implementation::App>());
+}
+
+int __cdecl main()
+{
+    winrt::Windows::UI::Xaml::Application::Start(
+        [](auto&&)
+        {
+            winrt::make<winrt::XboxBrave::implementation::App>();
+        });
 }
 
 namespace winrt::XboxBrave::implementation
