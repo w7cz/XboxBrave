@@ -1,10 +1,6 @@
 #include "pch.h"
 #include "MainPage.xaml.h"
 
-#if __has_include("MainPage.g.cpp")
-#include "MainPage.g.cpp"
-#endif
-
 using namespace winrt;
 using namespace Windows::Foundation;
 using namespace Windows::UI::Xaml;
